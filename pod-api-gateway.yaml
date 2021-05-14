@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-api-gateway
+  namespace: srilanka
+  labels:
+    env: srilanka-api
+spec:
+  selector:
+    matchLabels:
+      env: srilanka-api
+  replicas: 2
+  template:
+    metadata:
+      name: pod-api-gateway
+      namespace: srilanka
+      labels:
+        env: srilanka-api
+    spec:
+      containers:
+        - image: 480011687883.dkr.ecr.ap-southeast-1.amazonaws.com/backend-api-gateway:latest 
+          name: con-api-gateway
+          ports:
+            - containerPort: 9191
+
